@@ -35,6 +35,9 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 
 	@Value("${soundcloud.consumerKey}")
 	private String soundcloudConsumerKey;
+	
+	@Value("${soundcloud.redirectUri}")
+	private String soundcloudRedirectUri;
 
 	@Value("${soundcloud.consumerSecret}")
 	private String soundcloudConsumerSecret;
@@ -42,7 +45,7 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 	@Override
 	protected ConnectionFactory<SoundCloud> createConnectionFactory() {
 		return new SoundCloudConnectionFactory(soundcloudConsumerKey,
-				soundcloudConsumerSecret);
+				soundcloudConsumerSecret,soundcloudRedirectUri);
 	}
 
 	@Override
