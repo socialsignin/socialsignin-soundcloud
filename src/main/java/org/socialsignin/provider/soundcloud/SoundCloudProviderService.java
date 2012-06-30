@@ -7,16 +7,18 @@ import org.springframework.social.soundcloud.api.impl.SoundCloudTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SoundCloudProviderService extends AbstractProviderService<SoundCloud> {
+public class SoundCloudProviderService extends AbstractProviderService<SoundCloud,SoundCloudProviderConfig> {
 
     @Value("${soundcloud.consumerKey}")
     private String soundCloudConsumerKey;
 	
-	
-	
-	@Override
-	public Class<SoundCloud> getApiClass() {
-		return SoundCloud.class;
+
+	public SoundCloudProviderService() {
+		super();
+	}
+
+	public SoundCloudProviderService(SoundCloudProviderConfig providerConfig) {
+		super(providerConfig);
 	}
 
 	@Override

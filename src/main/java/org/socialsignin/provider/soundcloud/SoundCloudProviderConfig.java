@@ -16,12 +16,18 @@
 package org.socialsignin.provider.soundcloud;
 
 import org.socialsignin.provider.AbstractProviderConfig;
+import org.socialsignin.provider.strategy.connectionrepository.ConnectionRepositoryStrategy;
+import org.socialsignin.springsocial.security.SoundCloudConnectInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.social.connect.ConnectionFactory;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ConnectInterceptor;
 import org.springframework.social.soundcloud.api.SoundCloud;
+import org.springframework.social.soundcloud.api.impl.SoundCloudTemplate;
 import org.springframework.social.soundcloud.connect.SoundCloudConnectionFactory;
 
 /** 
@@ -30,7 +36,7 @@ import org.springframework.social.soundcloud.connect.SoundCloudConnectionFactory
 @Configuration
 public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud> {
 
-	@Autowired
+	@Autowired(required=false)
 	private SoundCloudConnectInterceptor soundCloudConnectInterceptor;
 
 	@Value("${soundcloud.consumerKey}")
@@ -41,6 +47,60 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 
 	@Value("${soundcloud.consumerSecret}")
 	private String soundcloudConsumerSecret;
+	
+	public SoundCloudProviderConfig() {
+		super();
+	}
+	
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,
+			SoundCloud authenticatedApi) {
+		super(authenticatedApi);
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
+	}
+	
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,String sessionKey) {
+		super(new SoundCloudTemplate(soundCloudConsumerKey,sessionKey));
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
+	}
+	
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,ConnectionRepository connectionRepository,
+			ConnectionFactoryRegistry connectionFactoryRegistry) {
+		super(connectionRepository, connectionFactoryRegistry);
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
+		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
+	}
+
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,ConnectionRepository connectionRepository,
+			UsersConnectionRepository usersConnectionRepository,
+			ConnectionFactoryRegistry connectionFactoryRegistry) {
+		super(connectionRepository, usersConnectionRepository,
+				connectionFactoryRegistry);
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
+		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
+	}
+	
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,String userId,	UsersConnectionRepository usersConnectionRepository,
+			ConnectionFactoryRegistry connectionFactoryRegistry) {
+		super(userId,usersConnectionRepository,
+				connectionFactoryRegistry);
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
+		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
+	}
+
+	public void setSoundcloudConsumerKey(String soundcloudConsumerKey) {
+		this.soundcloudConsumerKey = soundcloudConsumerKey;
+	}
+
+
+	public void setSoundcloudRedirectUri(String soundcloudRedirectUri) {
+		this.soundcloudRedirectUri = soundcloudRedirectUri;
+	}
+
+
+	public void setSoundcloudConsumerSecret(String soundcloudConsumerSecret) {
+		this.soundcloudConsumerSecret = soundcloudConsumerSecret;
+	}
+
 
 	@Override
 	protected ConnectionFactory<SoundCloud> createConnectionFactory() {
@@ -51,6 +111,11 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 	@Override
 	protected ConnectInterceptor<SoundCloud> getConnectInterceptor() {
 		return soundCloudConnectInterceptor;
+	}
+
+	@Override
+	public Class<SoundCloud> getApiClass() {
+		return SoundCloud.class;
 	}
 
 }
