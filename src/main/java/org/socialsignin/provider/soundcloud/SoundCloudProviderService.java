@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SoundCloudProviderService extends AbstractProviderService<SoundCloud,SoundCloudProviderConfig> {
 
-    @Value("${soundcloud.consumerKey}")
-    private String soundCloudConsumerKey;
-	
 
 	public SoundCloudProviderService() {
 		super();
@@ -23,7 +20,7 @@ public class SoundCloudProviderService extends AbstractProviderService<SoundClou
 
 	@Override
 	public SoundCloud getUnauthenticatedApi() {
-		return new SoundCloudTemplate(soundCloudConsumerKey);
+		return new SoundCloudTemplate(providerConfig.getSoundcloudConsumerKey());
 	}
 
 }

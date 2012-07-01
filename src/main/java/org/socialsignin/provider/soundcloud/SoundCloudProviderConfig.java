@@ -45,11 +45,27 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 	@Value("${soundcloud.redirectUri}")
 	private String soundcloudRedirectUri;
 
+	public String getSoundcloudConsumerKey() {
+		return soundcloudConsumerKey;
+	}
+
+	public String getSoundcloudRedirectUri() {
+		return soundcloudRedirectUri;
+	}
+
+	public String getSoundcloudConsumerSecret() {
+		return soundcloudConsumerSecret;
+	}
+
 	@Value("${soundcloud.consumerSecret}")
 	private String soundcloudConsumerSecret;
 	
 	public SoundCloudProviderConfig() {
 		super();
+	}
+	
+	public SoundCloudProviderConfig(String soundCloudConsumerKey) {
+		this.soundcloudConsumerKey = soundCloudConsumerKey;
 	}
 	
 	public SoundCloudProviderConfig(String soundCloudConsumerKey,
