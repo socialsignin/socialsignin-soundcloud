@@ -24,9 +24,19 @@ application.
 ```
 
 As well as configuring the SoundCloudConnectionFactory and registering with the ConnectionFactoryRegistry,
-this component scan also makes a <a href="https://github.com/socialsignin/socialsignin-provider/blob/master/src/main/java/org/socialsignin/provider/ProviderService.java">ProviderService<SoundCloud></a> implementation available as a bean in your application. This service
+this component scan also makes a SoundCloud <a href="https://github.com/socialsignin/socialsignin-provider/blob/master/src/main/java/org/socialsignin/provider/ProviderService.java">ProviderService<SoundCloud></a> implementation available as a bean in your application. This service
 can be used by your application to obtain SoundCloud API Clients for common use cases without needing to work with
-the Connection api of Spring Social directly.
+the Connection api of Spring Social directly:
+
+```
+public class YourService
+{
+  @Autowired
+  private SoundCloudProviderService soundCloudProviderService;
+  ...
+
+}
+```
 
 Prerequesites/Setup
 -------------------
