@@ -49,7 +49,16 @@ When using the default component scan to register this SoundCloud module, the fo
 ```
 soundcloud.consumerKey=
 soundcloud.consumerSecret=
+soundcloud.redirectUri=http://localhost:8080/signinOrConnect/soundcloud
 ```
+The ProviderSignInOrConnectController from Spring-Social-Security must be registered as an MVC controller in your
+application if you wish users be able to both "login" and "connect" with soundcloud, and teh soundcloud.redirectUri must be specified
+in your properties file as above.  This is to allow for the single redirect url required by SoundCloud to be specified
+as http://localhost:8080/signinOrConnect/soundcloud, and for both use cases of "login" and "connect" to be supported.
+
+If only one of the "Logging In" and "Connecting" use cases is required (if you have ProviderSignInController *or* ConnectController in your application, but not both), then
+this controller and property do not need to be present in your application.  The return url of SoundCloud can then
+be set as either of the /signin or /connect callback urls
 
 
 Module Features
