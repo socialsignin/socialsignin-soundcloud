@@ -52,7 +52,7 @@ soundcloud.consumerSecret=
 soundcloud.redirectUri=http://localhost:8080/signinOrConnect/soundcloud
 ```
 The ProviderSignInOrConnectController from Spring-Social-Security must be registered as an MVC controller in your
-application if you wish users be able to both "login" and "connect" with soundcloud, and teh soundcloud.redirectUri must be specified
+application if you wish users be able to both "login" and "connect" with soundcloud, and the soundcloud.redirectUri must be specified
 in your properties file as above.  This is to allow for the single redirect url required by SoundCloud to be specified
 as http://localhost:8080/signinOrConnect/soundcloud, and for both use cases of "login" and "connect" to be supported.
 
