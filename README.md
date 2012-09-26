@@ -1,4 +1,4 @@
-<a href="https://github.com/socialsignin/socialsignin-provider">SocialSignin Provider Module</a> for <a href="https://github.com/SpringSource/spring-social-soundcloud">Spring-Social-SoundCloud</a>
+<a href="https://github.com/socialsignin/socialsignin-provider">SocialSignin Provider Module</a> for <a href="https://github.com/michaellavelle/spring-social-soundcloud">Spring-Social-SoundCloud</a>
 ======================================================
 
 Add this module to your classpath and component scan to auto-register and configure spring-social-soundcloud for your
