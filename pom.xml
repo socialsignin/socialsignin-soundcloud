@@ -20,13 +20,12 @@
 	<groupId>org.socialsignin</groupId>
 	<artifactId>socialsignin-soundcloud</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>SocialSignIn SoundCloud Provider</name>
 	<properties>
-	   <org.socialsignin.provider.version>1.0.2-SNAPSHOT</org.socialsignin.provider.version>
-	   <org.springframework.social.soundcloud.version>1.0.2-SNAPSHOT</org.springframework.social.soundcloud.version>
-	   <org.socialsignin.springsocial.security.version>1.0.2.RELEASE</org.socialsignin.springsocial.security.version>
-	   
+	   <org.socialsignin.provider.version>1.1.0-SNAPSHOT</org.socialsignin.provider.version>
+	   <org.springframework.social.soundcloud.version>1.1.0-SNAPSHOT</org.springframework.social.soundcloud.version>
+	   <org.socialsignin.springsocial.security.version>1.1.0-SNAPSHOT</org.socialsignin.springsocial.security.version>
 	</properties>
 	<distributionManagement>
 	 	<repository>
@@ -47,6 +46,11 @@
 	        	<id>opensourceagility-releases</id>
 	        	<url>http://repo.opensourceagility.com/releases</url>
 	    	</repository>
+	    	<repository>
+            <id>spring-maven-milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+        </repository>	
 	</repositories>
 
 	<dependencies>

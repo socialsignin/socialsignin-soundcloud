@@ -42,24 +42,11 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 	@Value("${soundcloud.consumerKey}")
 	private String soundcloudConsumerKey;
 	
-	@Value("${soundcloud.redirectUri}")
-	private String soundcloudRedirectUri;
 
 	public String getSoundcloudConsumerKey() {
 		return soundcloudConsumerKey;
 	}
 
-	public String getSoundcloudRedirectUri() {
-		return soundcloudRedirectUri;
-	}
-
-	public String getSoundcloudConsumerSecret() {
-		return soundcloudConsumerSecret;
-	}
-
-	@Value("${soundcloud.consumerSecret}")
-	private String soundcloudConsumerSecret;
-	
 	public SoundCloudProviderConfig() {
 		super();
 	}
@@ -79,51 +66,26 @@ public class SoundCloudProviderConfig extends AbstractProviderConfig<SoundCloud>
 		this.soundcloudConsumerKey = soundCloudConsumerKey;
 	}
 	
-	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,ConnectionRepository connectionRepository,
-			ConnectionFactoryRegistry connectionFactoryRegistry) {
-		super(connectionRepository, connectionFactoryRegistry);
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,ConnectionRepository connectionRepository) {
+		super(connectionRepository);
 		this.soundcloudConsumerKey = soundCloudConsumerKey;
-		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
 	}
 
-	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,ConnectionRepository connectionRepository,
-			UsersConnectionRepository usersConnectionRepository,
-			ConnectionFactoryRegistry connectionFactoryRegistry) {
-		super(connectionRepository, usersConnectionRepository,
-				connectionFactoryRegistry);
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,ConnectionRepository connectionRepository,
+			UsersConnectionRepository usersConnectionRepository) {
+		super(connectionRepository, usersConnectionRepository);
 		this.soundcloudConsumerKey = soundCloudConsumerKey;
-		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
 	}
 	
-	public SoundCloudProviderConfig(String soundCloudConsumerKey,String soundCloudConsumerSecret,String userId,	UsersConnectionRepository usersConnectionRepository,
-			ConnectionFactoryRegistry connectionFactoryRegistry) {
-		super(userId,usersConnectionRepository,
-				connectionFactoryRegistry);
+	public SoundCloudProviderConfig(String soundCloudConsumerKey,String userId,	UsersConnectionRepository usersConnectionRepository) {
+		super(userId,usersConnectionRepository);
 		this.soundcloudConsumerKey = soundCloudConsumerKey;
-		this.soundcloudConsumerSecret  = soundCloudConsumerSecret;
 	}
 
 	public void setSoundcloudConsumerKey(String soundcloudConsumerKey) {
 		this.soundcloudConsumerKey = soundcloudConsumerKey;
 	}
-
-
-	public void setSoundcloudRedirectUri(String soundcloudRedirectUri) {
-		this.soundcloudRedirectUri = soundcloudRedirectUri;
-	}
-
-
-	public void setSoundcloudConsumerSecret(String soundcloudConsumerSecret) {
-		this.soundcloudConsumerSecret = soundcloudConsumerSecret;
-	}
-
-
-	@Override
-	protected ConnectionFactory<SoundCloud> createConnectionFactory() {
-		return new SoundCloudConnectionFactory(soundcloudConsumerKey,
-				soundcloudConsumerSecret,soundcloudRedirectUri);
-	}
-
+	
 	@Override
 	protected ConnectInterceptor<SoundCloud> getConnectInterceptor() {
 		return soundCloudConnectInterceptor;
